@@ -1,0 +1,155 @@
+{
+  "info": {
+    "_postman_id": "84b37837-8065-4f67-bfbc-d11bebca2d10",
+    "name": "PawConnect API Tests - Safe Share",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58992732"
+  },
+  "item": [
+    {
+      "name": "GET Pets API",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/pets"
+      },
+      "response": []
+    },
+    {
+      "name": "Post Pets API",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{staff_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Buddy\",\r\n  \"species\": \"Dog\",\r\n  \"age\": \"1 year\",\r\n  \"location\": \"Toronto, ON\",\r\n  \"status\": \"Available\",\r\n  \"description\": \"Buddy is a friendly and playful dog looking for a loving home.\",\r\n  \"image\": \"/images/maple.jpg\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/pets"
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{staff_email}}\",\n  \"password\": \"{{staff_password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/users/login"
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH Pet API",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{staff_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"status\": \"Adopted\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/pets/{{pet_id}}"
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Pet API",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{staff_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": "{{base_url}}/api/pets/{{pet_id}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Authorization Rejection",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{base_url}}/api/pets",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Unauthorized test\",\n  \"species\": \"Dog\",\n  \"age\": \"1 year\",\n  \"location\": \"Toronto, ON\",\n  \"status\": \"Available\",\n  \"description\": \"Authorization test listing\",\n  \"image\": \"/images/maple.jpg\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001"
+    },
+    {
+      "key": "staff_email",
+      "value": ""
+    },
+    {
+      "key": "staff_password",
+      "value": ""
+    },
+    {
+      "key": "staff_token",
+      "value": ""
+    },
+    {
+      "key": "pet_id",
+      "value": ""
+    }
+  ]
+}
